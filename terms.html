@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bot Legal</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #000;
+  color: #e2e8f0;
+}
+
+/* RGB border animation */
+@keyframes rgbBorder {
+  0% {border-color: #ff0000;}
+  25% {border-color: #00ff00;}
+  50% {border-color: #00ffff;}
+  75% {border-color: #ff00ff;}
+  100% {border-color: #ff0000;}
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.logo {
+  text-align: center;
+  font-size: 50px;
+  margin-bottom: 20px;
+  color: #38bdf8;
+  text-shadow: 0 0 20px #38bdf8, 0 0 40px #38bdf8;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {opacity: 0.6;}
+  50% {opacity: 1;}
+  100% {opacity: 0.6;}
+}
+
+.nav {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.nav button {
+  background: none;
+  border: 1px solid #38bdf8;
+  color: #38bdf8;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.card {
+  background: rgba(15, 23, 42, 0.9);
+  border: 2px solid;
+  border-radius: 14px;
+  padding: 20px;
+  margin-top: 20px;
+  animation: rgbBorder 6s infinite;
+}
+
+h1 {
+  text-align: center;
+  color: #38bdf8;
+}
+
+h2 {
+  color: #22c55e;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  opacity: 0.6;
+}
+</style>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">🤖 YOUR BOT NAME</div>
+
+<div class="nav">
+  <button onclick="showSection('terms')">Terms</button>
+  <button onclick="showSection('privacy')">Privacy</button>
+</div>
+
+<!-- TERMS -->
+<div id="terms" class="section active">
+
+<h1>Terms of Service</h1>
+
+<div class="card">
+<h2>1. Acceptance</h2>
+<p>By using this bot, you agree to all terms. If you do not agree, stop using immediately.</p>
+</div>
+
+<div class="card">
+<h2>2. User Responsibility</h2>
+<p>You are fully responsible for your actions when using the bot, including misuse, abuse, or illegal activities.</p>
+</div>
+
+<div class="card">
+<h2>3. Permissions</h2>
+<p>Server administrators are responsible for permissions granted to the bot.</p>
+</div>
+
+<div class="card">
+<h2>4. Disclaimer</h2>
+<p>The bot is provided "AS IS" without warranties. We are not responsible for any damages.</p>
+</div>
+
+<div class="card">
+<h2>5. Termination</h2>
+<p>We reserve the right to restrict or ban users at any time.</p>
+</div>
+
+</div>
+
+<!-- PRIVACY -->
+<div id="privacy" class="section">
+
+<h1>Privacy Policy</h1>
+
+<div class="card">
+<h2>1. Data Collection</h2>
+<p>We may collect:</p>
+<ul>
+<li>User IDs</li>
+<li>Server IDs</li>
+<li>Command usage</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>2. Data Usage</h2>
+<p>Data is used strictly for bot functionality and improving services.</p>
+</div>
+
+<div class="card">
+<h2>3. Data Sharing</h2>
+<p>We do NOT sell or share your data with third parties.</p>
+</div>
+
+<div class="card">
+<h2>4. Data Security</h2>
+<p>We implement reasonable security measures, but no system is 100% secure.</p>
+</div>
+
+<div class="card">
+<h2>5. User Rights</h2>
+<p>You may request data removal by contacting the developer.</p>
+</div>
+
+<div class="card">
+<h2>6. Changes</h2>
+<p>This policy may be updated at any time.</p>
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 𝙎𝙝𝙞𝙣𝙖𝙔𝙪𝙪 • All rights reserved
+</div>
+
+</div>
+
+</body>
+</html>
