@@ -9,12 +9,21 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #000;
+  background: black;
   color: #e2e8f0;
+  overflow-x: hidden;
 }
 
-/* RGB border animation */
-@keyframes rgbBorder {
+/* Background particles */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/* RGB animation */
+@keyframes rgb {
   0% {border-color: #ff0000;}
   25% {border-color: #00ff00;}
   50% {border-color: #00ffff;}
@@ -28,62 +37,55 @@ body {
   padding: 40px 20px;
 }
 
+/* Logo */
 .logo {
   text-align: center;
   font-size: 50px;
-  margin-bottom: 20px;
   color: #38bdf8;
   text-shadow: 0 0 20px #38bdf8, 0 0 40px #38bdf8;
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0% {opacity: 0.6;}
+  0%,100% {opacity: 0.6;}
   50% {opacity: 1;}
-  100% {opacity: 0.6;}
 }
 
+/* Nav */
 .nav {
   text-align: center;
-  margin-bottom: 30px;
+  margin: 30px 0;
 }
 
 .nav button {
-  background: none;
+  background: rgba(0,0,0,0.5);
   border: 1px solid #38bdf8;
   color: #38bdf8;
   padding: 10px 20px;
   margin: 5px;
-  cursor: pointer;
   border-radius: 10px;
+  cursor: pointer;
 }
 
-.section {
-  display: none;
-}
+/* Sections */
+.section { display: none; }
+.section.active { display: block; }
 
-.section.active {
-  display: block;
-}
-
+/* Card */
 .card {
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(10px);
   border: 2px solid;
-  border-radius: 14px;
+  border-radius: 16px;
   padding: 20px;
   margin-top: 20px;
-  animation: rgbBorder 6s infinite;
+  animation: rgb 6s infinite;
 }
 
-h1 {
-  text-align: center;
-  color: #38bdf8;
-}
+h1 { text-align: center; color: #38bdf8; }
+h2 { color: #22c55e; }
 
-h2 {
-  color: #22c55e;
-}
-
+/* Footer */
 .footer {
   text-align: center;
   margin-top: 40px;
@@ -91,105 +93,139 @@ h2 {
 }
 </style>
 
-<script>
-function showSection(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-</script>
-
 </head>
 
 <body>
 
+<canvas id="bg"></canvas>
+
 <div class="container">
 
-<div class="logo">🤖 YOUR BOT NAME</div>
+<div class="logo">🤖 𝙎𝙝𝙞𝙣𝙖𝙔𝙪𝙪</div>
 
 <div class="nav">
-  <button onclick="showSection('terms')">Terms</button>
-  <button onclick="showSection('privacy')">Privacy</button>
+<button onclick="show('terms')">Điều khoản</button>
+<button onclick="show('privacy')">Bảo mật</button>
 </div>
 
 <!-- TERMS -->
 <div id="terms" class="section active">
-
-<h1>Terms of Service</h1>
+<h1>Điều khoản dịch vụ</h1>
 
 <div class="card">
-<h2>1. Acceptance</h2>
-<p>By using this bot, you agree to all terms. If you do not agree, stop using immediately.</p>
+<h2>1. Chấp nhận</h2>
+<p>Khi sử dụng bot, bạn đồng ý với toàn bộ điều khoản. Nếu không đồng ý, hãy ngừng sử dụng ngay.</p>
 </div>
 
 <div class="card">
-<h2>2. User Responsibility</h2>
-<p>You are fully responsible for your actions when using the bot, including misuse, abuse, or illegal activities.</p>
+<h2>2. Trách nhiệm người dùng</h2>
+<p>Bạn chịu hoàn toàn trách nhiệm đối với hành vi của mình khi sử dụng bot, bao gồm:</p>
+<ul>
+<li>Spam, phá hoại server</li>
+<li>Sử dụng bot vào mục đích trái pháp luật</li>
+<li>Khai thác lỗi hệ thống</li>
+</ul>
 </div>
 
 <div class="card">
-<h2>3. Permissions</h2>
-<p>Server administrators are responsible for permissions granted to the bot.</p>
+<h2>3. Quyền hạn</h2>
+<p>Người quản trị server chịu trách nhiệm về quyền đã cấp cho bot.</p>
 </div>
 
 <div class="card">
-<h2>4. Disclaimer</h2>
-<p>The bot is provided "AS IS" without warranties. We are not responsible for any damages.</p>
+<h2>4. Miễn trừ trách nhiệm</h2>
+<p>Bot được cung cấp "nguyên trạng". Chúng tôi không chịu trách nhiệm cho bất kỳ thiệt hại nào phát sinh.</p>
 </div>
 
 <div class="card">
-<h2>5. Termination</h2>
-<p>We reserve the right to restrict or ban users at any time.</p>
+<h2>5. Chấm dứt</h2>
+<p>Chúng tôi có quyền chặn người dùng vi phạm mà không cần báo trước.</p>
 </div>
 
 </div>
 
 <!-- PRIVACY -->
 <div id="privacy" class="section">
-
-<h1>Privacy Policy</h1>
+<h1>Chính sách bảo mật</h1>
 
 <div class="card">
-<h2>1. Data Collection</h2>
-<p>We may collect:</p>
+<h2>1. Dữ liệu thu thập</h2>
 <ul>
-<li>User IDs</li>
-<li>Server IDs</li>
-<li>Command usage</li>
+<li>ID người dùng</li>
+<li>ID server</li>
+<li>Lịch sử lệnh</li>
 </ul>
 </div>
 
 <div class="card">
-<h2>2. Data Usage</h2>
-<p>Data is used strictly for bot functionality and improving services.</p>
+<h2>2. Mục đích sử dụng</h2>
+<p>Dữ liệu chỉ dùng để vận hành và cải thiện bot.</p>
 </div>
 
 <div class="card">
-<h2>3. Data Sharing</h2>
-<p>We do NOT sell or share your data with third parties.</p>
+<h2>3. Chia sẻ dữ liệu</h2>
+<p>Chúng tôi không bán hoặc chia sẻ dữ liệu cho bên thứ ba.</p>
 </div>
 
 <div class="card">
-<h2>4. Data Security</h2>
-<p>We implement reasonable security measures, but no system is 100% secure.</p>
+<h2>4. Bảo mật</h2>
+<p>Không có hệ thống nào an toàn tuyệt đối, chúng tôi không chịu trách nhiệm ngoài tầm kiểm soát.</p>
 </div>
 
 <div class="card">
-<h2>5. User Rights</h2>
-<p>You may request data removal by contacting the developer.</p>
-</div>
-
-<div class="card">
-<h2>6. Changes</h2>
-<p>This policy may be updated at any time.</p>
+<h2>5. Quyền người dùng</h2>
+<p>Bạn có thể yêu cầu xoá dữ liệu bằng cách liên hệ developer.</p>
 </div>
 
 </div>
 
 <div class="footer">
-© 2026 YOUR BOT NAME • All rights reserved
+© 2026 𝙎𝙝𝙞𝙣𝙖𝙔𝙪𝙪 • All rights reserved
 </div>
 
 </div>
+
+<script>
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+/* Particle background */
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for(let i=0;i<100;i++){
+  particles.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    r: Math.random()*2,
+    dx: Math.random()-0.5,
+    dy: Math.random()-0.5
+  });
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="#38bdf8";
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+    p.x+=p.dx;
+    p.y+=p.dy;
+
+    if(p.x<0||p.x>canvas.width) p.dx*=-1;
+    if(p.y<0||p.y>canvas.height) p.dy*=-1;
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
 
 </body>
 </html>
